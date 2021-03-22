@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Node introduction",
+  "main": "_",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/froz-ferre/Node.git"
+  },
+  "author": "Froz-Ferre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/froz-ferre/Node/issues"
+  },
+  "homepage": "https://github.com/froz-ferre/Node#readme"
+}
