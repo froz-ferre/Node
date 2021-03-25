@@ -42,12 +42,13 @@ function meeting(rooms = [], neededChairs) {
 
 	let sum = 0;
 	const result = [];
+	const maxNeededChairs = 8;
 
 	for (let room of rooms) {
 		const remain = room[1] - room[0].length >= 0 ? room[1] - room[0].length : 0;
 		sum += remain;
 		result.push(remain);
-		if (sum >= neededChairs) {
+		if (sum >= neededChairs || sum >= maxNeededChairs) {
 			return result;
 		}
 	}
