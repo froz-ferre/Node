@@ -35,7 +35,7 @@ console.log(program('Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull
  meeting([['XX', 2], ['XXXX', 6], ['XXXXX', 4]], 0) ---> 'Game On'
  */
 
-function meeting(rooms, neededChairs) {
+function meeting(rooms = [], neededChairs) {
 	if (!neededChairs) {
 		return 'Game On';
 	}
@@ -90,7 +90,7 @@ console.log(meeting([['XX', 2], ['XXXX', 6], ['XXXXX', 4]], 2));
  The two points that are closest to each other are D and F. Expected answer should be an array with both points in any order. [[6,3],[7,4]] or [[7,4],[6,3]] are valid answers for the example above.
  */
 
-function minDistance(plane) {
+function minDistance(plane = []) {
 	const getDistance = (x, y) => Math.sqrt(Math.pow((y[0] - x[0]), 2) + Math.pow(y[1] - x[1], 2));
 
 	return plane.reduce((acc, el, i, arr) => {
