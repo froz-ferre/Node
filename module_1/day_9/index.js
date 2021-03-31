@@ -20,6 +20,7 @@ setInterval(() => {
   const spinner = animations[animationIndex];
 
   if(spinner.index === spinner.symbols.length){
+    spinner.index = 0;
     animationIndex++;
   }
 
