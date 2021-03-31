@@ -19,14 +19,13 @@ setInterval(() => {
 
   const spinner = animations[animationIndex];
 
-  if(spinner.index === spinner.symbols.length){
-    spinner.index = 0;
-    animationIndex++;
-  }
-
   console.clear();
   console.log(spinner.symbols[spinner.index]);
 
   spinner.index++;
 
+  if(spinner.index === spinner.symbols.length){
+    spinner.index = 0;
+    animationIndex++;
+  }
 }, 1000);
