@@ -3,11 +3,14 @@ import Validator from './validator.js';
 
 export default class ChessDesk {
 
-// TODO: check float inputs
   build(height = 2, width = 2, symbol = '*') {
     const invalid = Validator.validateChessDesk(height, width, symbol);
     if (invalid) {
       return invalid;
+    }
+
+    if (symbol.length > 1) {
+      symbol = symbol[0];
     }
 
     let result = '';
