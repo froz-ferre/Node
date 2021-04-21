@@ -52,6 +52,26 @@
     .register-link, .register-link:visited, .register-link:focus {
       color: black;
     }
+
+    .btn,
+    .form-control {
+      min-height: 30px;
+      padding: 5px 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background-color: #0e4a16;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background-color: lightgrey;
+      cursor: crosshair;
+    }
   </style>
 </head>
 <body>
@@ -67,11 +87,33 @@
   <section class="container">
     <h1 class="title">Log In:</h1>
     <form action="#" id="form-login" class="form-login">
-      <input type="text" placeholder="Login">
-      <input type="password" placeholder="Password">
-      <button>Log In</button>
+      <input type="text" placeholder="Login" class="form-control" required>
+      <input type="password" placeholder="Password" class="form-control" required>
+      <button type="submit" class="btn" disabled>Log In</button>
       <a href="register" class="register-link">Haven't account yet? Register now!</a>
     </form>
   </section>
+
+  <script>
+    const form = document.querySelector('#form-login');
+    const btn = document.querySelector('.btn');
+
+    const controls = form.querySelectorAll('input');
+    controls.forEach(ctrl => {
+      ctrl.addEventListener('input', () => {
+        const valid = Array.from(controls).map(c => c.validity.valid).every(Boolean);
+        valid ? btn.removeAttribute('disabled') : btn.setAttribute('disabled', true);
+      })
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const values = Array.from(controls).map(c => c.value);
+      window.location.assign(
+        `/login?login=${values[0]}&password=${values[1]}`
+      );
+    })
+  </script>
 </body>
 </html>

@@ -40,13 +40,43 @@
     .title {
       color: #0e4a16;
     }
+
+    .form-register {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      max-width: 350px;
+      margin: 20px auto;
+    }
+
+    .btn,
+    .form-control {
+      min-height: 30px;
+      padding: 5px 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background-color: #0e4a16;
+      color: white;
+      font-size: 24px;
+      align-self: center;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background-color: lightgrey;
+      cursor: crosshair;
+    }
   </style>
 </head>
 <body>
 <nav class="menu">
   <div class="menu-items">
     <img src="https://w1.pngwing.com/pngs/885/534/png-transparent-green-grass-nodejs-javascript-react-mean-angularjs-logo-symbol.png" alt="Node" class="menu-logo">
-    <ul class="menu-items-wrapper"></ul>
+    <ul class="menu-items-wrapper">
+    </ul>
   </div>
   <div class="menu-auth">
     <a href="login">Log In</a>
@@ -54,6 +84,54 @@
 </nav>
 <section class="container">
   <h1 class="title">Registration:</h1>
+  <form action="#" id="form-register" class="form-register">
+    <label>
+      Name:
+      <input type="text" maxlength="50" minlength="1" required placeholder="Name" class="form-control">
+    </label>
+    <label>
+      Last Name:
+      <input type="text" maxlength="50" minlength="1" required placeholder="Las Name" class="form-control">
+    </label>
+    <label>
+      Login:
+      <input type="text" maxlength="50" minlength="1" required placeholder="Login" class="form-control">
+    </label>
+    <label>
+      Password:
+      <input type="password" maxlength="60" minlength="6" required placeholder="Password" class="form-control">
+    </label>
+    <label>
+      E-mail:
+      <input type="email" maxlength="50" required placeholder="Email" class="form-control">
+    </label>
+    <label>
+      Birthday:
+      <input type="date" required class="form-control">
+    </label>
+    <button class="btn" disabled>Register</button>
+  </form>
 </section>
+
+<script>
+  const form = document.querySelector('#form-register');
+  const btn = document.querySelector('.btn');
+
+  const controls = form.querySelectorAll('input');
+  controls.forEach(ctrl => {
+    ctrl.addEventListener('input', () => {
+      const valid = Array.from(controls).map(c => c.validity.valid).every(Boolean);
+      valid ? btn.removeAttribute('disabled') : btn.setAttribute('disabled', true);
+    })
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const values = Array.from(controls).map(c => c.value);
+    window.location.assign(
+      `/register?name=${values[0]}&lastname=${values[1]}&login=${values[2]}&password=${values[3]}&email=${values[4]}&birthday=${values[5]}`
+    );
+  })
+</script>
 </body>
 </html>
